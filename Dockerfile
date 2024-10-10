@@ -9,6 +9,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     pip install --upgrade pip && \
     pip install jupyterlab && \
+    pip install --upgrade jupyterthemes && \
     pip install ipywidgets && \
     pip install voila && \
     pip install transformers && \
@@ -23,6 +24,7 @@ RUN useradd -ms /bin/bash jupyter
 USER jupyter
 WORKDIR /home/jupyter
 
+RUN jt -t chesterish
 #RUN jupyter lab --generate-config
 
 EXPOSE 80
