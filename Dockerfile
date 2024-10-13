@@ -1,31 +1,17 @@
-#FROM nvidia/cuda:12.6.1-cudnn-runtime-ubuntu20.04
 FROM nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04
-#FROM python:3.10
-#FROM tensorflow/tensorflow:latest-gpu-jupyter
 
-#USER root
+COPY requirements.txt requirements.txt
+
 RUN apt-get update && \
-    apt-get install -y python3-pip python3-dev python-is-python3 && \
+    apt-get install -y python3-pip python3-dev python-is-python3 graphviz && \
     rm -rf /var/lib/apt/lists/* && \
     pip install --upgrade pip && \
-    pip install jupyterlab && \
-    pip install --upgrade jupyterthemes && \
-    pip install ipywidgets && \
-    pip install voila && \
-    pip install transformers && \
-    pip install accelerate && \
-    pip install torch && \
-    pip install pandas && \
-    pip install numpy && \
-    pip install matplotlib && \
-    pip install "tensorflow[and-cuda]"
+    pip install -r requirements.txt
+RUN pip install --upgrade scikit-learn jupyterlab ipywidgets voila transformers accelerate torch pandas numpy matplotlib tensorflow[and-cuda] pydot
 
 RUN useradd -ms /bin/bash jupyter
 USER jupyter
 WORKDIR /home/jupyter
-
-RUN jt -t chesterish
-#RUN jupyter lab --generate-config
 
 EXPOSE 80
 
