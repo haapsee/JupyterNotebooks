@@ -8,7 +8,7 @@ RUN apt-get update && \
     pip install --upgrade pip && \
     pip install -r requirements.txt && \
     echo "done"
-RUN pip install --upgrade scikit-learn jupyterlab ipywidgets transformers accelerate torch pandas numpy matplotlib tensorflow[and-cuda] pydot
+#RUN pip install --upgrade scikit-learn jupyterlab ipywidgets transformers accelerate torch pandas numpy matplotlib tensorflow[and-cuda] tensorflow_hub pydot
 
 RUN useradd -ms /bin/bash jupyter
 USER jupyter
@@ -17,5 +17,6 @@ WORKDIR /home/jupyter
 RUN export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 EXPOSE 80
+EXPOSE 6006
 
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--notebook-dir=/home/jupyter/projects", "--debug"]

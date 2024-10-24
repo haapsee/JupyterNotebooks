@@ -4,8 +4,9 @@ services:
     hostname: jupyter
     container_name: jupyter
     build: .
-#    ports:
+    ports:
 #      - "5000:80"
+      - "6006:6006"
     env_file: .env
     volumes:
       - jupyterhome:/home/jupyter
