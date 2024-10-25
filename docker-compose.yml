@@ -4,13 +4,19 @@ services:
     hostname: jupyter
     container_name: jupyter
     build: .
-    ports:
+#    ports:
 #      - "5000:80"
-      - "6006:6006"
+#      - "6006:6006"
     env_file: .env
     volumes:
       - jupyterhome:/home/jupyter
       - ./jupyterprojects:/home/jupyter/projects
+    healthcheck:
+      test: ["CMD-SHELL", "test -s `which nvidia-smi` && nvidia-smi || exit 1"]
+      start_period: 1s
+      interval: 20s
+      timeout: 5s
+      retries: 2
     deploy:
       resources:
         reservations:
