@@ -5,12 +5,15 @@ COPY requirements.txt requirements.txt
 RUN apt-get update && \
     apt-get install -y nvidia-cuda-toolkit python3-pip python3-dev python-is-python3 graphviz wget unzip zip pkg-config cmake libcairo2-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    pip install --upgrade pip && \
+#    pip install --upgrade pip && \
     pip install -r requirements.txt && \
     echo "done"
 RUN pip install --upgrade scikit-learn jupyterlab ipywidgets transformers accelerate torch pandas numpy matplotlib tensorflow[and-cuda] tensorflow_hub pydot
 
 RUN useradd -ms /bin/bash jupyter
+RUN mkdir -p /home/jupyter/.jupyter/lab/user-settings/
+RUN chown -R jupyter /home/jupyter/.jupyter/
+
 USER jupyter
 WORKDIR /home/jupyter
 

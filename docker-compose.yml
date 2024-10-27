@@ -10,6 +10,8 @@ services:
     env_file: .env
     volumes:
       - jupyterhome:/home/jupyter
+      - ./.jupyter_user_settings:/home/jupyter/.jupyter/lab/user-settings
+      - ./.jupyter_server_config.json:/home/jupyter/.jupyter/jupyter_server_config.json
       - ./jupyterprojects:/home/jupyter/projects
     healthcheck:
       test: ["CMD-SHELL", "test -s `which nvidia-smi` && nvidia-smi || exit 1"]
