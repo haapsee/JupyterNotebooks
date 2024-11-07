@@ -8,7 +8,7 @@ RUN apt-get update && \
     pip install --upgrade pip && \
     pip install -r requirements.txt && \
     echo "done"
-RUN pip install --upgrade scikit-learn jupyterlab ipywidgets transformers accelerate torch pandas numpy matplotlib tensorflow[and-cuda] tensorflow_hub pydot tensorflow-datasets
+RUN pip install --upgrade scikit-learn jupyterlab ipywidgets transformers accelerate torch pandas numpy matplotlib tensorflow[and-cuda] tensorflow_hub pydot tensorflow-datasets tensorflow_text keras keras_nlp
 
 RUN useradd -ms /bin/bash jupyter
 RUN mkdir -p /home/jupyter/.jupyter/lab/user-settings/
