@@ -2,6 +2,6 @@
 .env
 **/.ipynb_checkpoints/
 **/*.zip
-jupyterprojects/Course_Tensorflow_for_Deep_Learning_Bootcamp/notes/pizza_steak/
-jupyterprojects/Course_Tensorflow_for_Deep_Learning_Bootcamp/cats-and-dogs/
+**/tmp
 **/__pycache__
+**/Untitled.ipynb
